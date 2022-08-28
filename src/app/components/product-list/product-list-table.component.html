@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <table class="table-responsive table table-hover">
+        <thead class="bg-primary text-white">
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th>Units In Stock</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let tempProduct of products">
+          <td>{{tempProduct.name}}</td>
+          <td>{{tempProduct.unitPrice | currency:'USD'}}</td>
+          <td>{{tempProduct.unitsInStock}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
