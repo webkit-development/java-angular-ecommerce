@@ -3,6 +3,9 @@ import {ProductService} from "../../services/product.service";
 import {Product} from "../../common/product";
 import {ActivatedRoute} from "@angular/router";
 import {GetResponseProducts} from '../../services/product.service';
+import {CartItem} from "../../common/cart-item";
+import {CartService} from "../../services/cart.service";
+
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list-grid.component.html',
@@ -20,7 +23,8 @@ export class ProductListComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cartService: CartService
   ) {
   }
 
@@ -82,5 +86,11 @@ export class ProductListComponent implements OnInit {
         this.thePageSize = data.page.size;
         this.theTotalElements = data.page.totalElements;
     }
+  }
+
+  addToCart(product: Product) {
+    console.log(`Adding to cart: ${product.name}, ${product.unitPrice}`);
+    const theCartItem = new CartItem(product);
+    this.cartService.addToCart(theCartItem);
   }
 }
